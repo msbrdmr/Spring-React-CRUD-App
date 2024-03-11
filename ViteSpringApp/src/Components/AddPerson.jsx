@@ -6,7 +6,7 @@ const AddPerson = () => {
 
   const onFinish = async (values) => {
     try {
-      await fetch('http://localhost:8080/api/persons/add', {
+      await fetch('https://spring-crud-server.onrender.com/api/persons/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

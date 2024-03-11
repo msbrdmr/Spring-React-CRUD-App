@@ -18,7 +18,7 @@ const PersonList = () => {
 
     const fetchPersons = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/persons/getAll', {
+            const response = await fetch('https://spring-crud-server.onrender.com/api/persons/getAll', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const PersonList = () => {
                 return;
             }
             console.log("updating person", values)
-            const response = await fetch(`http://localhost:8080/api/persons/update/${personToEdit}`, {
+            const response = await fetch(`https://spring-crud-server.onrender.com/api/persons/update/${personToEdit}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const PersonList = () => {
     };
     const handleDeletePerson = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/persons/delete/${id}`, {
+            const response = await fetch(`https://spring-crud-server.onrender.com/api/persons/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
