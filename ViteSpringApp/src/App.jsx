@@ -28,6 +28,7 @@ function App() {
     <div style={{
       borderRadius: "30px",
       border: "2px solid black",
+      overflow: "hidden",
     }}>
       <Layout className="layout" style={{ width: "800px", height: "800px", padding: '0 0 20px 0' }}
 

@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/person")
-@CrossOrigin(origins = "https://spring-react-crud-app-1.onrender.com", maxAge = 3600, allowedHeaders = "*", allowCredentials = "true", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, exposedHeaders = {"Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"})
 public class PersonController {
 
     @Autowired
