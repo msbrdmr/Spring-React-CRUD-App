@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Input, message, DatePicker } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import axios from 'axios';
 
 const PersonList = () => {
     const [persons, setPersons] = useState([]);
@@ -75,24 +74,32 @@ const PersonList = () => {
         },
     ];
 
-    const onFinish = async (values) => {
+    const onEditPerson = async (values) => {
         try {
-            await axios.put(`http://localhost:8080/api/persons/update/${personToEdit}`, {
-                name: values.name,
-                birthdate: values.birthdate.toString()
+            if (!values.name || !values.birthdate) {
+                message.error('Please fill in all the fields');
+                return;
+            }
+            console.log("updating person", values)
+            const response = await fetch(`http://localhost:8080/api/persons/update/${personToEdit}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: values.name, birthdate: values.birthdate.format('YYYY-MM-DD') }),
             });
-            message.success('Person updated successfully');
-            // Update the specific person's data in the state
+            console.log('Updated person:', response);
             setPersons(prevPersons => {
                 const updatedPersons = prevPersons.map(person => {
                     if (person.id === personToEdit) {
-                        return { ...person, name: values.name, birthdate: values.birthdate.toString() };
+                        return { ...person, name: values.name, birthdate:  values.birthdate.format('YYYY-MM-DD') };
                     }
                     return person;
                 });
                 return updatedPersons;
             });
 
+            message.success('Person updated successfully');
             setShowEditModal(false);
             form.resetFields();
         } catch (error) {
@@ -102,7 +109,12 @@ const PersonList = () => {
     };
     const handleDeletePerson = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/persons/delete/${id}`);
+            const response = await fetch(`http://localhost:8080/api/persons/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             message.success('Person deleted successfully');
             fetchPersons();
         } catch (error) {
@@ -136,13 +148,14 @@ const PersonList = () => {
                     Ok
                 </Button>,
             ]}>
-                <Form form={form} onFinish={onFinish} layout="vertical">
+                <Form form={form} onFinish={onEditPerson} layout="vertical">
                     <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please input the name' }]}>
-                        <Input placeholder="Name" />
+                        <Input placeholder="Name" required />
                     </Form.Item>
                     <Form.Item name="birthdate" label="Birthday">
                         <DatePicker
                             format="YYYY-MM-DD"
+                            valueFormat="YYYY-MM-DD"
                             placeholder="Birthday"
                             required
                         />

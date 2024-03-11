@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, message ,DatePicker} from 'antd';
+import { Form, Input, Button, message, DatePicker } from 'antd';
 import axios from 'axios';
 
 const AddPerson = () => {
@@ -7,7 +7,14 @@ const AddPerson = () => {
 
   const onFinish = async (values) => {
     try {
-      await axios.post('http://localhost:8080/api/persons/add', { name: values.name, birthdate: values.birthdate.toString() });
+      await fetch('http://localhost:8080/api/persons/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: values.name, birthdate: values.birthdate.format('YYYY-MM-DD') }),
+      });
+      console.log('Added person:', values);
       message.success('Person added successfully');
       form.resetFields();
     } catch (error) {
@@ -16,17 +23,20 @@ const AddPerson = () => {
     }
   };
 
+
   return (
     <div>
       <h2>Add Person</h2>
       <Form form={form} onFinish={onFinish} layout="inline">
         <Form.Item name="name" label="Name">
-          <Input placeholder="Name" />
+          <Input placeholder="Name" required />
         </Form.Item>
         <Form.Item name="birthdate" label="Birthday">
           <DatePicker
             format="YYYY-MM-DD"
+            valueFormat="YYYY-MM-DD"
             placeholder="Birthday"
+            required
           />
         </Form.Item>
         <Form.Item>
