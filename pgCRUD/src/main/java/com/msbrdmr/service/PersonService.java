@@ -6,6 +6,8 @@ import com.msbrdmr.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonService {
     //this class will communicate with the repository layer
@@ -23,7 +25,7 @@ public class PersonService {
 
         return personRepo.findById(id).orElse(null);
     }
-    public Iterable<Person> getAllPersons() {
+    public List<Person> getAllPersons() {
         return personRepo.findAll();
     }
 
@@ -35,4 +37,7 @@ public class PersonService {
         personRepo.save(person);
     }
 
+    public void updatePerson(Person person) {
+        personRepo.save(person);
+    }
 }

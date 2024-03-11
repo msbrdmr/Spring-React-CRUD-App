@@ -1,28 +1,19 @@
 package com.msbrdmr.controller;
-
-
-import com.google.gson.Gson;
 import com.msbrdmr.model.Person;
 import com.msbrdmr.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-
+import java.util.List;
+@RestController
+@RequestMapping("/api/persons")
 @CrossOrigin(origins = "https://spring-react-crud-app-1.onrender.com")
-@Controller
 public class PersonController {
-
     @Autowired
     private PersonService personService;
 
     @GetMapping("/{id}")
-    public String getPerson(@PathVariable int id) {
-        Gson gson = new Gson();
-        return gson.toJson(personService.getPerson(id));
+    public Person getPerson(@PathVariable int id) {
+        return personService.getPerson(id);
     }
 
     @PostMapping("/add")
@@ -32,19 +23,14 @@ public class PersonController {
     }
 
     @GetMapping("/getAll")
-    public String getAllPersons() {
-        Gson gson = new Gson();
-        return gson.toJson(personService.getAllPersons());
+    public List<Person> getAllPersons() {
+        return personService.getAllPersons();
     }
 
     @PutMapping("/update/{id}")
-    public String updatePerson(@RequestBody Person person, @PathVariable String id) {
-
-        System.out.println("incoming person: " + person+ " id: " + id);
-        Person personRequest = personService.getPerson(Integer.parseInt(id));
-        personRequest.setName(person.getName());
-        personRequest.setBirthdate(person.getBirthdate());
-        personService.setPerson(personRequest);
+    public String updatePerson(@RequestBody Person person, @PathVariable int id) {
+        person.setId(id);
+        personService.updatePerson(person);
         return "Person updated successfully";
     }
 
@@ -53,5 +39,4 @@ public class PersonController {
         personService.deletePerson(id);
         return "Person deleted successfully";
     }
-
 }
