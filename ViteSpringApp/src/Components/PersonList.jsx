@@ -19,7 +19,7 @@ const PersonList = () => {
 
     const fetchPersons = async () => {
         try {
-            const response = await axios.get('https://spring-react-crud-app.onrender.com/person/get');
+            const response = await axios.get('http://localhost:8080/person/get');
 
             console.log('Fetched persons:', response.data)
             setPersons(response.data);
@@ -71,7 +71,7 @@ const PersonList = () => {
 
     const onFinish = async (values) => {
         try {
-            await axios.put(`https://spring-react-crud-app.onrender.com/person/update/${personToEdit}`, {
+            await axios.put(`http://localhost:8080/person/update/${personToEdit}`, {
                 name: values.name,
                 birthdate: values.birthdate.toString()
             });
@@ -96,7 +96,7 @@ const PersonList = () => {
     };
     const handleDeletePerson = async (id) => {
         try {
-            await axios.delete(`https://spring-react-crud-app.onrender.com/person/delete/${id}`);
+            await axios.delete(`http://localhost:8080/person/delete/${id}`);
             message.success('Person deleted successfully');
             fetchPersons();
         } catch (error) {

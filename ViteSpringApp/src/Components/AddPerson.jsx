@@ -7,7 +7,7 @@ const AddPerson = () => {
 
   const onFinish = async (values) => {
     try {
-      await axios.post('https://spring-react-crud-app.onrender.com/person/add', { name: values.name, birthdate: values.birthdate.toString() });
+      await axios.post('http://localhost:8080/person/add', { name: values.name, birthdate: values.birthdate.toString() });
       message.success('Person added successfully');
       form.resetFields();
     } catch (error) {
