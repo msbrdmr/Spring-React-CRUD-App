@@ -1,5 +1,6 @@
-com\msbrdmr\model\Person.class
 com\msbrdmr\PgCrudApplication.class
-com\msbrdmr\service\PersonService.class
+com\msbrdmr\config\WebConfig.class
 com\msbrdmr\controller\PersonController.class
 com\msbrdmr\repository\PersonRepo.class
+com\msbrdmr\model\Person.class
+com\msbrdmr\service\PersonService.class

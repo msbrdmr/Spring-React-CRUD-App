@@ -1,5 +1,4 @@
-FROM openjdk:17-oracle
-EXPOSE 8080
-ARG JAR_FILE=target/pgCRUD-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} pgCRUD-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "pgCRUD-0.0.1-SNAPSHOT.jar"]
+FROM eclipse-temurin:17-jdk-alpine
+VOLUME /tmp
+COPY target/pgCRUD-0.0.1-SNAPSHOT.jar.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
