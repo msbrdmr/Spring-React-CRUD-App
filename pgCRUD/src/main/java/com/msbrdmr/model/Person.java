@@ -19,8 +19,6 @@ public class Person {
     @Column(name = "birthday")
     private String birthdate;
 
-    public Person() {
-    }
 
     public Person(String name, String birthdate) {
         this.name = name;
