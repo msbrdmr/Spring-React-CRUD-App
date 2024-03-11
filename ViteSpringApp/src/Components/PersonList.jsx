@@ -19,10 +19,26 @@ const PersonList = () => {
 
     const fetchPersons = async () => {
         try {
-            const response = await axios.get('https://spring-react-crud-app.onrender.com/person/get');
+            const response = await fetch('https://spring-react-crud-app.onrender.com/person/get', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            // data : Array(10) [
+            //     { id: 1, name: 'John Smith', birthdate: '1990-01-01' },
+            //     { id: 2, name: 'Emily Johnson', birthdate: '1991-02-02' },
+            //     { id: 3, name: 'Michael Williams', birthdate: '1992-03-03' },
+            //     { id: 4, name: 'Sarah Jones', birthdate: '1993-04-04' },
+            //     { id: 5, name: 'Daniel Brown', birthdate: '1994-05-05' },
+            //     { id: 7, name: 'Matthew Taylor', birthdate: '1996-07-07' },
+            //     { id: 8, name: 'Lauren Martinez', birthdate: '1997-08-08' },
+            //     { id: 9, name: 'Christopher Anderson', birthdate: '1998-09-09' }
+            //   ]
 
-            console.log('Fetched persons:', response.data)
-            setPersons(response.data);
+            console.log('Fetched persons:', data)
+            setPersons(data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching persons:', error);
@@ -117,8 +133,10 @@ const PersonList = () => {
                 setShowEditModal(false)
                 form.resetFields()
             }} footer={[
-                <Button key="delete" type="primary" danger onClick={() =>{ handleDeletePerson(personToEdit)
-                setShowEditModal(false)}
+                <Button key="delete" type="primary" danger onClick={() => {
+                    handleDeletePerson(personToEdit)
+                    setShowEditModal(false)
+                }
 
                 }>Delete Person</Button>,
                 <Button key="cancel" onClick={() => setShowEditModal(false)}>
@@ -136,7 +154,7 @@ const PersonList = () => {
                         <DatePicker
                             format="YYYY-MM-DD"
                             placeholder="Birthday"
-                            required 
+                            required
                         />
                     </Form.Item>
                 </Form>
