@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/person")
+@CrossOrigin(origins = "*")
 public class PersonController {
 
     @Autowired
