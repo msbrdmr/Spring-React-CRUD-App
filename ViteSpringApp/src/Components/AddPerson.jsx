@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message ,DatePicker} from 'antd';
 import axios from 'axios';
 
 const AddPerson = () => {
@@ -7,7 +7,7 @@ const AddPerson = () => {
 
   const onFinish = async (values) => {
     try {
-      await axios.post('https://spring-react-crud-app.onrender.com/person/add', {name: values.name, birthdate: values.birthdate.toString()});
+      await axios.post('https://spring-react-crud-app.onrender.com/person/add', { name: values.name, birthdate: values.birthdate.toString() });
       message.success('Person added successfully');
       form.resetFields();
     } catch (error) {
@@ -24,8 +24,10 @@ const AddPerson = () => {
           <Input placeholder="Name" />
         </Form.Item>
         <Form.Item name="birthdate" label="Birthday">
-          {/* <Input placeholder="Birthday" type='date' /> */}
-          <DatePicker />
+          <DatePicker
+            format="YYYY-MM-DD"
+            placeholder="Birthday"
+          />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">Add Person</Button>
