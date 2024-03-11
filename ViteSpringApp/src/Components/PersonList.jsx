@@ -136,6 +136,7 @@ const PersonList = () => {
                         <DatePicker
                             format="YYYY-MM-DD"
                             placeholder="Birthday"
+                            required 
                         />
                     </Form.Item>
                 </Form>
