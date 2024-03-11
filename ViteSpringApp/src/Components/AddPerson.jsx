@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message, DatePicker } from 'antd';
-import axios from 'axios';
 
 const AddPerson = () => {
   const [form] = Form.useForm();
