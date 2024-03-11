@@ -23,7 +23,6 @@ public class PersonService {
 
         return personRepo.findById(id).orElse(null);
     }
-
     public Iterable<Person> getAllPersons() {
         return personRepo.findAll();
     }
