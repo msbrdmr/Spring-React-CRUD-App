@@ -19,7 +19,7 @@ const PersonList = () => {
 
     const fetchPersons = async () => {
         try {
-            const response = await fetch('https://spring-react-crud-app.onrender.com/api/persons/getAll', {
+            const response = await fetch('http://localhost:8080/api/persons/getAll', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const PersonList = () => {
 
     const onFinish = async (values) => {
         try {
-            await axios.put(`https://spring-react-crud-app.onrender.com/api/persons/update/${personToEdit}`, {
+            await axios.put(`http://localhost:8080/api/persons/update/${personToEdit}`, {
                 name: values.name,
                 birthdate: values.birthdate.toString()
             });
@@ -102,7 +102,7 @@ const PersonList = () => {
     };
     const handleDeletePerson = async (id) => {
         try {
-            await axios.delete(`https://spring-react-crud-app.onrender.com/api/persons/delete/${id}`);
+            await axios.delete(`http://localhost:8080/api/persons/delete/${id}`);
             message.success('Person deleted successfully');
             fetchPersons();
         } catch (error) {
