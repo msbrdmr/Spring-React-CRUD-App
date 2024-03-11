@@ -20,6 +20,8 @@ const PersonList = () => {
     const fetchPersons = async () => {
         try {
             const response = await axios.get('http://localhost:8080/person/get');
+
+            console.log('Fetched persons:', response.data)
             setPersons(response.data);
             setLoading(false);
         } catch (error) {
