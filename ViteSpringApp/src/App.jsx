@@ -22,25 +22,33 @@ function App() {
     { key: '1', label: 'Person List' },
     { key: '2', label: 'Add Person' },
   ];
-  
+
 
   return (
-    <Layout className="layout" style={{ width: "800px", height: "800px", padding: '0 0 20px 0' }}>
-      <Header>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          items = {items}
-          mode="horizontal"
-          selectedKeys={[selectedMenuItem]}
-          onClick={({ key }) => setSelectedMenuItem(key)}
-        >
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <div className="site-layout-content">{renderContent()}</div>
-      </Content>
-    </Layout>
+    <div style={{
+      borderRadius: "30px",
+      border: "1px solid black",
+    }}>
+      <Layout className="layout" style={{ width: "800px", height: "800px", padding: '0 0 20px 0' }}
+
+      >
+        <Header>
+          <div className="logo" />
+          <Menu
+            theme="dark"
+            items={items}
+            mode="horizontal"
+            selectedKeys={[selectedMenuItem]}
+            onClick={({ key }) => setSelectedMenuItem(key)}
+          >
+          </Menu>
+        </Header>
+        <Content style={{ padding: '0 50px' }}>
+          <div className="site-layout-content">{renderContent()}</div>
+        </Content>
+      </Layout>
+    </div>
+
   );
 }
 

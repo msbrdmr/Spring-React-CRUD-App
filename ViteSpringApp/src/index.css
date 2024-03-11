@@ -26,8 +26,6 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  border-radius: 20px;
-  border: 1px solid black;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
