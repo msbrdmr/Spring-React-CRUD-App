@@ -27,7 +27,7 @@ function App() {
   return (
     <div style={{
       borderRadius: "30px",
-      border: "1px solid black",
+      border: "2px solid black",
     }}>
       <Layout className="layout" style={{ width: "800px", height: "800px", padding: '0 0 20px 0' }}
 
