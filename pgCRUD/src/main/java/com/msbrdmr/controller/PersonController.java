@@ -5,14 +5,15 @@ import com.google.gson.Gson;
 import com.msbrdmr.model.Person;
 import com.msbrdmr.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@RestController
-@RequestMapping("/person")
-@CrossOrigin(origins = "*")
+
+@CrossOrigin(origins = "https://spring-react-crud-app-1.onrender.com")
+@Controller
 public class PersonController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class PersonController {
         return "Person added successfully";
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getAll")
     public String getAllPersons() {
         Gson gson = new Gson();
         return gson.toJson(personService.getAllPersons());

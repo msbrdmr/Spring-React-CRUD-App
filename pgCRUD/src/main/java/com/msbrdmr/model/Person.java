@@ -1,7 +1,12 @@
 package com.msbrdmr.model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @Entity
 @Table(name = "person")
@@ -19,18 +24,6 @@ public class Person {
 
     public Person(String name, String birthdate) {
         this.name = name;
-        this.birthdate = birthdate;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
