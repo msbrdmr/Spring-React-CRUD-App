@@ -24,7 +24,8 @@ const AddPerson = () => {
           <Input placeholder="Name" />
         </Form.Item>
         <Form.Item name="birthdate" label="Birthday">
-          <Input placeholder="Birthday" type='date' />
+          {/* <Input placeholder="Birthday" type='date' /> */}
+          <DatePicker />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">Add Person</Button>
